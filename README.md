@@ -1,63 +1,97 @@
-# Terraform Bridge Provider Boilerplate
+# Komodor AgentOps Resource Provider
 
-This repository is the template for authoring a Pulumi package from an existing Terraform provider as part of the guide for [authoring and publishing Pulumi packages](https://www.pulumi.com/docs/iac/packages-and-automation/pulumi-packages/authoring/).
+The AgentOps Resource Provider lets you manage [Komodor AgentOps](https://komodor.com)
+config-plane resources with Pulumi. It is a [bridged](https://github.com/pulumi/pulumi-terraform-bridge)
+wrapper around the upstream Terraform provider
+[`komodorio/terraform-provider-agentops`](https://github.com/komodorio/terraform-provider-agentops),
+which is built on the Terraform Plugin Framework.
 
-This repository is initially set up as a fictitious provider named "xyz" to demonstrate a resource, a data source and configuration derived from the [github.com/pulumi/terraform-provider-xyz provider](https://github.com/pulumi/terraform-provider-xyz).
+## Status
 
-Read the [setup instructions](SETUP.md) for step-by-step instructions on how to bridge a new provider and refer to our complete docs [guide for authoring and publishing a Pulumi Package](https://www.pulumi.com/docs/iac/packages-and-automation/pulumi-packages/authoring/).
-
-# Xyz Resource Provider
-
-The Xyz Resource Provider lets you manage [Xyz](http://example.com) resources.
+This provider is **not published yet** — it is built and consumed locally. See
+[Local development](#local-development) below.
 
 ## Installing
 
-This package is available for several languages/platforms:
+Once published, this package will be available for several languages/platforms:
 
 ### Node.js (JavaScript/TypeScript)
 
-To use from JavaScript or TypeScript in Node.js, install using either `npm`:
-
 ```bash
-npm install @pulumi/xyz
-```
-
-or `yarn`:
-
-```bash
-yarn add @pulumi/xyz
+npm install @pulumi/agentops     # or: yarn add @pulumi/agentops
 ```
 
 ### Python
 
-To use from Python, install using `pip`:
-
 ```bash
-pip install pulumi_xyz
+pip install pulumi_agentops
 ```
 
 ### Go
 
-To use from Go, use `go get` to grab the latest version of the library:
-
 ```bash
-go get github.com/pulumi/pulumi-xyz/sdk/go/...
+go get github.com/komodorio/pulumi-agentops/sdk/go/...
 ```
 
 ### .NET
 
-To use from .NET, install using `dotnet add package`:
-
 ```bash
-dotnet add package Pulumi.Xyz
+dotnet add package Pulumi.Agentops
 ```
 
 ## Configuration
 
-The following configuration points are available for the `xyz` provider:
+The following configuration points are available for the `agentops` provider:
 
-- `xyz:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
+- `agentops:apiKey` (environment: `AGENTOPS_API_KEY`) - AgentOps API key, sent as a Bearer
+  token. Required. Marked secret.
+- `agentops:endpoint` (environment: `AGENTOPS_ENDPOINT`) - AgentOps control-plane base URL.
+  Defaults to `https://agentops.komodor.com`. Use `https://staging.agentops.komodor.com` for
+  staging, or your own URL when self-hosting.
+
+## Example
+
+```typescript
+import * as agentops from "@pulumi/agentops";
+
+const policy = new agentops.Policy("deploy", {
+    name: "deploy-policy",
+    description: "Grants agent invocation capabilities",
+    grants: JSON.stringify([{ capability: "agent.invoke", resource_type: "agent" }]),
+});
+
+const role = new agentops.Role("operator", {
+    name: "operator",
+    description: "Can invoke agents",
+    policyIds: [policy.id],
+});
+```
+
+## Local development
+
+```bash
+mise trust .config/mise.toml && mise install -y
+PULUMI_HOME=$PWD/.pulumi pulumi plugin install converter terraform   # needed by tfgen
+make tfgen        # generate schema.json + bridge-metadata.json
+make provider     # build bin/pulumi-resource-agentops
+make build_sdks   # generate and build all four SDKs
+mise x -- make lint
+```
+
+To use the locally built provider, put `bin/pulumi-resource-agentops` on your `PATH` and run
+`make install_nodejs_sdk` (or install `sdk/python/bin`) before `pulumi up`.
+
+### Tracking upstream
+
+The upstream provider is pinned in `provider/shim/go.mod`. To take a new version, bump it
+there and in `provider/go.mod`, then re-run `make tfgen`.
+
+`provider/shim` exists because the upstream constructor lives in an `internal` package. The
+shim module declares itself under the upstream module path so Go's internal-import rule
+permits the reference; `provider/go.mod` then `replace`s it with the local directory.
 
 ## Reference
 
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/xyz/api-docs/).
+Upstream resource documentation lives at
+[registry.terraform.io/providers/komodorio/agentops](https://registry.terraform.io/providers/komodorio/agentops/latest/docs);
+the bridge converts it into the generated SDK docs.

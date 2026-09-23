@@ -2,21 +2,29 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
-import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 declare var exports: any;
-const __config = new pulumi.Config("xyz");
+const __config = new pulumi.Config("agentops");
 
 /**
- * A region which should be used.
+ * AgentOps API key used as a Bearer token. May also be set via the `AGENTOPS_API_KEY` environment variable.
  */
-export declare const region: enums.region.Region | undefined;
-Object.defineProperty(exports, "region", {
+export declare const apiKey: string | undefined;
+Object.defineProperty(exports, "apiKey", {
     get() {
-        return __config.getObject<enums.region.Region>("region");
+        return __config.get("apiKey") ?? utilities.getEnv("AGENTOPS_API_KEY");
+    },
+    enumerable: true,
+});
+
+/**
+ * AgentOps control-plane base URL. Defaults to `https://agentops.komodor.com`. May also be set via the `AGENTOPS_ENDPOINT` environment variable. Use `https://staging.agentops.komodor.com` for staging or your own URL for self-hosted.
+ */
+export declare const endpoint: string | undefined;
+Object.defineProperty(exports, "endpoint", {
+    get() {
+        return __config.get("endpoint") ?? utilities.getEnv("AGENTOPS_ENDPOINT");
     },
     enumerable: true,
 });

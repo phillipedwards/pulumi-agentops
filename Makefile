@@ -7,8 +7,8 @@
 # generated Makefile. ci-mgmt never creates `sdk-hooks.mk`; it is opt-in. See
 # `sdk-hooks.mk.example` in pulumi/ci-mgmt for the contract and a worked example.
 
-PACK := xyz
-ORG := pulumi
+PACK := agentops
+ORG := komodorio
 PROJECT := github.com/$(ORG)/pulumi-$(PACK)
 PROVIDER_PATH := provider
 VERSION_PATH := $(PROVIDER_PATH)/pkg/version.Version
@@ -274,7 +274,7 @@ GOOS=$(1) GOARCH=$(2) CGO_ENABLED=0 go build -v $(PULUMI_PROVIDER_BUILD_PARALLEL
 provider: bin/$(PROVIDER)
 
 # `make provider_no_deps` builds the provider binary directly, without ensuring that
-# `cmd/pulumi-resource-xyz/schema.json` is valid and up to date.
+# `cmd/pulumi-resource-agentops/schema.json` is valid and up to date.
 # To create a release ready binary, you should use `make provider`.
 provider_no_deps:
 	$(call build_provider_cmd,$(shell go env GOOS),$(shell go env GOARCH),$(WORKING_DIR)/bin/$(PROVIDER))

@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Xyz
+namespace Pulumi.Agentops
 {
     public static class Config
     {
@@ -30,16 +30,26 @@ namespace Pulumi.Xyz
             }
         }
 
-        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("xyz");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("agentops");
 
-        private static readonly __Value<Pulumi.Xyz.Region.Region?> _region = new __Value<Pulumi.Xyz.Region.Region?>(() => __config.GetObject<Pulumi.Xyz.Region.Region>("region"));
+        private static readonly __Value<string?> _apiKey = new __Value<string?>(() => __config.Get("apiKey") ?? Utilities.GetEnv("AGENTOPS_API_KEY"));
         /// <summary>
-        /// A region which should be used.
+        /// AgentOps API key used as a Bearer token. May also be set via the `AGENTOPS_API_KEY` environment variable.
         /// </summary>
-        public static Pulumi.Xyz.Region.Region? Region
+        public static string? ApiKey
         {
-            get => _region.Get();
-            set => _region.Set(value);
+            get => _apiKey.Get();
+            set => _apiKey.Set(value);
+        }
+
+        private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint") ?? Utilities.GetEnv("AGENTOPS_ENDPOINT"));
+        /// <summary>
+        /// AgentOps control-plane base URL. Defaults to `https://agentops.komodor.com`. May also be set via the `AGENTOPS_ENDPOINT` environment variable. Use `https://staging.agentops.komodor.com` for staging or your own URL for self-hosted.
+        /// </summary>
+        public static string? Endpoint
+        {
+            get => _endpoint.Get();
+            set => _endpoint.Set(value);
         }
 
     }

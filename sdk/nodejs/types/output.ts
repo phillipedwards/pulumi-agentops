@@ -4,5 +4,412 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
-import * as enums from "../types/enums";
+
+export interface GetCapabilitiesCapability {
+    /**
+     * The action this capability allows.
+     */
+    allows: string;
+    /**
+     * The domain the capability belongs to.
+     */
+    domain: string;
+    /**
+     * The capability key.
+     */
+    key: string;
+    /**
+     * The sensitivity level of the capability.
+     */
+    sensitivity: string;
+}
+
+export interface GetIntegrationCatalogEntry {
+    /**
+     * Auth configuration key.
+     */
+    authConfigKey: string;
+    /**
+     * Authentication mode.
+     */
+    authMode: string;
+    /**
+     * Whether the integration is available.
+     */
+    available: boolean;
+    /**
+     * Capabilities the integration provides.
+     */
+    capabilities: string[];
+    /**
+     * Category.
+     */
+    category: string;
+    /**
+     * Description.
+     */
+    description: string;
+    /**
+     * Documentation URL.
+     */
+    docsUrl: string;
+    /**
+     * Logo URL.
+     */
+    logoUrl: string;
+    /**
+     * Display name.
+     */
+    name: string;
+    /**
+     * Integration provider key.
+     */
+    provider: string;
+}
+
+export interface GetResourceTypesResourceType {
+    /**
+     * The resource type key.
+     */
+    key: string;
+    /**
+     * Notes describing the resource type.
+     */
+    notes: string;
+    /**
+     * The scope of the resource type.
+     */
+    scope: string;
+}
+
+export interface GetReviewersReviewer {
+    /**
+     * Reviewer agent identifier.
+     */
+    agentId: string;
+    /**
+     * Description.
+     */
+    description: string;
+    /**
+     * Findings raised in the last 30 days.
+     */
+    findings30d: number;
+    /**
+     * Whether this is a built-in reviewer.
+     */
+    isBuiltin: boolean;
+    /**
+     * Timestamp of the most recent review.
+     */
+    lastReviewAt: string;
+    /**
+     * Display name.
+     */
+    name: string;
+    /**
+     * Reviews performed in the last 30 days.
+     */
+    reviews30d: number;
+    /**
+     * Number of workflows using this reviewer.
+     */
+    workflowCount: number;
+}
+
+export interface GetSkillsSkill {
+    /**
+     * Description.
+     */
+    description: string;
+    /**
+     * MD5 checksum of the skill.
+     */
+    md5: string;
+    /**
+     * Display name.
+     */
+    name: string;
+    /**
+     * Path of the skill.
+     */
+    path: string;
+    /**
+     * Skill identifier.
+     */
+    skillId: string;
+    /**
+     * Tags associated with the skill.
+     */
+    tags: string[];
+    /**
+     * Timestamp of the last update.
+     */
+    updatedAt: string;
+    /**
+     * Version of the skill.
+     */
+    version: string;
+}
+
+export interface GetWorkerCatalogEntry {
+    /**
+     * Category.
+     */
+    category: string;
+    /**
+     * Description.
+     */
+    description: string;
+    /**
+     * Documentation URL.
+     */
+    docsUrl: string;
+    /**
+     * Catalog entry identifier.
+     */
+    id: string;
+    /**
+     * Credentials that must be supplied before the worker can be deployed.
+     */
+    missingCredentials: string[];
+    /**
+     * Display name.
+     */
+    name: string;
+    /**
+     * Whether the catalog worker is ready to deploy.
+     */
+    ready: boolean;
+    /**
+     * Status.
+     */
+    status: string;
+    /**
+     * Whether the worker supports chat.
+     */
+    supportsChat: boolean;
+    /**
+     * Whether the worker supports MCP.
+     */
+    supportsMcp: boolean;
+    /**
+     * Whether the worker supports triggers.
+     */
+    supportsTriggers: boolean;
+}
+
+export interface HostedAgentAgent {
+    /**
+     * Subagent content.
+     */
+    content: string;
+    /**
+     * Subagent identifier.
+     */
+    id: string;
+}
+
+export interface HostedAgentImage {
+    /**
+     * Image pull policy.
+     */
+    pullPolicy?: string;
+    /**
+     * Image registry host.
+     */
+    registry?: string;
+    /**
+     * Image repository.
+     */
+    repository?: string;
+    /**
+     * Image tag.
+     */
+    tag?: string;
+}
+
+export interface HostedAgentMcpServer {
+    /**
+     * MCP server name.
+     */
+    name: string;
+}
+
+export interface HostedAgentSkill {
+    /**
+     * Skill content.
+     */
+    content: string;
+    /**
+     * Skill identifier.
+     */
+    id: string;
+}
+
+export interface IncidentPipelineAlertSource {
+    /**
+     * External monitor identifier to link when `monitorMode = linkExisting`.
+     */
+    externalMonitorId?: string;
+    /**
+     * How the pipeline binds to the provider's monitor. One of `createCatchall`, `linkExisting`.
+     */
+    monitorMode: string;
+    /**
+     * Alert provider. One of `datadog`, `grafana`, `alertmanager`, `pagerduty`, `opsgenie`, `generic`.
+     */
+    provider: string;
+}
+
+export interface IncidentPipelineDeliveryConfig {
+    /**
+     * Slack delivery target.
+     */
+    slack?: outputs.IncidentPipelineDeliveryConfigSlack;
+}
+
+export interface IncidentPipelineDeliveryConfigSlack {
+    /**
+     * Slack channel ID to post to.
+     */
+    channelId: string;
+    /**
+     * Slack channel name. Resolved by the server when omitted.
+     */
+    channelName: string;
+    /**
+     * Whether Slack delivery is enabled.
+     */
+    enabled: boolean;
+}
+
+export interface IncidentPipelineOrchestratorBinding {
+    /**
+     * ID of the orchestrator agent.
+     */
+    agentId: string;
+}
+
+export interface IncidentPipelineRoutingRule {
+    /**
+     * Only route incidents from this environment.
+     */
+    environment?: string;
+    /**
+     * Whether an incident missing a filtered field is routed.
+     */
+    missingFieldDefault: boolean;
+    /**
+     * Route every incident, ignoring the filters below.
+     */
+    routeAll: boolean;
+    /**
+     * Only route incidents for this service.
+     */
+    service?: string;
+    /**
+     * Only route incidents at this severity.
+     */
+    severity?: string;
+    /**
+     * Only route incidents matching these tag key/value pairs.
+     */
+    tags?: {[key: string]: string};
+}
+
+export interface IncidentPipelineSpecialistBinding {
+    /**
+     * ID of the specialist agent.
+     */
+    agentId: string;
+    /**
+     * Whether the specialist is enabled.
+     */
+    enabled: boolean;
+    /**
+     * Role the specialist plays in the pipeline.
+     */
+    role: string;
+}
+
+export interface OutpostAllowlist {
+    /**
+     * Hostname or IP address.
+     */
+    host: string;
+    /**
+     * Optional path prefix.
+     */
+    pathPrefix?: string;
+    /**
+     * Port number.
+     */
+    port: number;
+    /**
+     * URL scheme (`http` or `https`).
+     */
+    scheme: string;
+}
+
+export interface ReviewWorkflowManualSetup {
+    /**
+     * Webhook content type to configure.
+     */
+    contentType: string;
+    /**
+     * GitHub events the webhook should send.
+     */
+    events: string[];
+    /**
+     * GitHub repository name.
+     */
+    repoName: string;
+    /**
+     * GitHub repository owner.
+     */
+    repoOwner: string;
+    /**
+     * Webhook signing secret. Sensitive.
+     */
+    secret: string;
+    /**
+     * Webhook URL to register in GitHub.
+     */
+    webhookUrl: string;
+}
+
+export interface ReviewWorkflowRepo {
+    /**
+     * GitHub repository name.
+     */
+    repoName: string;
+    /**
+     * GitHub repository owner (user or organization).
+     */
+    repoOwner: string;
+}
+
+export interface ReviewWorkflowRepoStatus {
+    /**
+     * GitHub webhook ID, when provisioned.
+     */
+    githubHookId: number;
+    /**
+     * GitHub repository name.
+     */
+    repoName: string;
+    /**
+     * GitHub repository owner.
+     */
+    repoOwner: string;
+    /**
+     * Webhook provisioning error, when failed.
+     */
+    webhookError: string;
+    /**
+     * Webhook provisioning status.
+     */
+    webhookStatus: string;
+}
 

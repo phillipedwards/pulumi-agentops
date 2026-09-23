@@ -5,28 +5,201 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { GetDataSourceArgs, GetDataSourceResult, GetDataSourceOutputArgs } from "./getDataSource";
-export const getDataSource: typeof import("./getDataSource").getDataSource = null as any;
-export const getDataSourceOutput: typeof import("./getDataSource").getDataSourceOutput = null as any;
-utilities.lazyLoad(exports, ["getDataSource","getDataSourceOutput"], () => require("./getDataSource"));
+export { AgentArgs, AgentState } from "./agent";
+export type Agent = import("./agent").Agent;
+export const Agent: typeof import("./agent").Agent = null as any;
+utilities.lazyLoad(exports, ["Agent"], () => require("./agent"));
+
+export { AgentSkillArgs, AgentSkillState } from "./agentSkill";
+export type AgentSkill = import("./agentSkill").AgentSkill;
+export const AgentSkill: typeof import("./agentSkill").AgentSkill = null as any;
+utilities.lazyLoad(exports, ["AgentSkill"], () => require("./agentSkill"));
+
+export { ApiKeyArgs, ApiKeyState } from "./apiKey";
+export type ApiKey = import("./apiKey").ApiKey;
+export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
+utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
+
+export { ChannelArgs, ChannelState } from "./channel";
+export type Channel = import("./channel").Channel;
+export const Channel: typeof import("./channel").Channel = null as any;
+utilities.lazyLoad(exports, ["Channel"], () => require("./channel"));
+
+export { ChannelRouteArgs, ChannelRouteState } from "./channelRoute";
+export type ChannelRoute = import("./channelRoute").ChannelRoute;
+export const ChannelRoute: typeof import("./channelRoute").ChannelRoute = null as any;
+utilities.lazyLoad(exports, ["ChannelRoute"], () => require("./channelRoute"));
+
+export { CredentialArgs, CredentialState } from "./credential";
+export type Credential = import("./credential").Credential;
+export const Credential: typeof import("./credential").Credential = null as any;
+utilities.lazyLoad(exports, ["Credential"], () => require("./credential"));
+
+export { CredentialBindingArgs, CredentialBindingState } from "./credentialBinding";
+export type CredentialBinding = import("./credentialBinding").CredentialBinding;
+export const CredentialBinding: typeof import("./credentialBinding").CredentialBinding = null as any;
+utilities.lazyLoad(exports, ["CredentialBinding"], () => require("./credentialBinding"));
+
+export { GetCapabilitiesResult } from "./getCapabilities";
+export const getCapabilities: typeof import("./getCapabilities").getCapabilities = null as any;
+export const getCapabilitiesOutput: typeof import("./getCapabilities").getCapabilitiesOutput = null as any;
+utilities.lazyLoad(exports, ["getCapabilities","getCapabilitiesOutput"], () => require("./getCapabilities"));
+
+export { GetIntegrationCatalogResult } from "./getIntegrationCatalog";
+export const getIntegrationCatalog: typeof import("./getIntegrationCatalog").getIntegrationCatalog = null as any;
+export const getIntegrationCatalogOutput: typeof import("./getIntegrationCatalog").getIntegrationCatalogOutput = null as any;
+utilities.lazyLoad(exports, ["getIntegrationCatalog","getIntegrationCatalogOutput"], () => require("./getIntegrationCatalog"));
+
+export { GetOutpostInstallArgs, GetOutpostInstallResult, GetOutpostInstallOutputArgs } from "./getOutpostInstall";
+export const getOutpostInstall: typeof import("./getOutpostInstall").getOutpostInstall = null as any;
+export const getOutpostInstallOutput: typeof import("./getOutpostInstall").getOutpostInstallOutput = null as any;
+utilities.lazyLoad(exports, ["getOutpostInstall","getOutpostInstallOutput"], () => require("./getOutpostInstall"));
+
+export { GetResourceTypesResult } from "./getResourceTypes";
+export const getResourceTypes: typeof import("./getResourceTypes").getResourceTypes = null as any;
+export const getResourceTypesOutput: typeof import("./getResourceTypes").getResourceTypesOutput = null as any;
+utilities.lazyLoad(exports, ["getResourceTypes","getResourceTypesOutput"], () => require("./getResourceTypes"));
+
+export { GetReviewersResult } from "./getReviewers";
+export const getReviewers: typeof import("./getReviewers").getReviewers = null as any;
+export const getReviewersOutput: typeof import("./getReviewers").getReviewersOutput = null as any;
+utilities.lazyLoad(exports, ["getReviewers","getReviewersOutput"], () => require("./getReviewers"));
+
+export { GetSkillsResult } from "./getSkills";
+export const getSkills: typeof import("./getSkills").getSkills = null as any;
+export const getSkillsOutput: typeof import("./getSkills").getSkillsOutput = null as any;
+utilities.lazyLoad(exports, ["getSkills","getSkillsOutput"], () => require("./getSkills"));
+
+export { GetWorkerCatalogResult } from "./getWorkerCatalog";
+export const getWorkerCatalog: typeof import("./getWorkerCatalog").getWorkerCatalog = null as any;
+export const getWorkerCatalogOutput: typeof import("./getWorkerCatalog").getWorkerCatalogOutput = null as any;
+utilities.lazyLoad(exports, ["getWorkerCatalog","getWorkerCatalogOutput"], () => require("./getWorkerCatalog"));
+
+export { GraderConfigArgs, GraderConfigState } from "./graderConfig";
+export type GraderConfig = import("./graderConfig").GraderConfig;
+export const GraderConfig: typeof import("./graderConfig").GraderConfig = null as any;
+utilities.lazyLoad(exports, ["GraderConfig"], () => require("./graderConfig"));
+
+export { GrantArgs, GrantState } from "./grant";
+export type Grant = import("./grant").Grant;
+export const Grant: typeof import("./grant").Grant = null as any;
+utilities.lazyLoad(exports, ["Grant"], () => require("./grant"));
+
+export { HostedAgentArgs, HostedAgentState } from "./hostedAgent";
+export type HostedAgent = import("./hostedAgent").HostedAgent;
+export const HostedAgent: typeof import("./hostedAgent").HostedAgent = null as any;
+utilities.lazyLoad(exports, ["HostedAgent"], () => require("./hostedAgent"));
+
+export { IncidentPipelineArgs, IncidentPipelineState } from "./incidentPipeline";
+export type IncidentPipeline = import("./incidentPipeline").IncidentPipeline;
+export const IncidentPipeline: typeof import("./incidentPipeline").IncidentPipeline = null as any;
+utilities.lazyLoad(exports, ["IncidentPipeline"], () => require("./incidentPipeline"));
+
+export { IncidentPipelineSlackTriggerArgs, IncidentPipelineSlackTriggerState } from "./incidentPipelineSlackTrigger";
+export type IncidentPipelineSlackTrigger = import("./incidentPipelineSlackTrigger").IncidentPipelineSlackTrigger;
+export const IncidentPipelineSlackTrigger: typeof import("./incidentPipelineSlackTrigger").IncidentPipelineSlackTrigger = null as any;
+utilities.lazyLoad(exports, ["IncidentPipelineSlackTrigger"], () => require("./incidentPipelineSlackTrigger"));
+
+export { IntegrationConnectionArgs, IntegrationConnectionState } from "./integrationConnection";
+export type IntegrationConnection = import("./integrationConnection").IntegrationConnection;
+export const IntegrationConnection: typeof import("./integrationConnection").IntegrationConnection = null as any;
+utilities.lazyLoad(exports, ["IntegrationConnection"], () => require("./integrationConnection"));
+
+export { KnowledgeBaseArgs, KnowledgeBaseState } from "./knowledgeBase";
+export type KnowledgeBase = import("./knowledgeBase").KnowledgeBase;
+export const KnowledgeBase: typeof import("./knowledgeBase").KnowledgeBase = null as any;
+utilities.lazyLoad(exports, ["KnowledgeBase"], () => require("./knowledgeBase"));
+
+export { KnowledgeBaseAgentArgs, KnowledgeBaseAgentState } from "./knowledgeBaseAgent";
+export type KnowledgeBaseAgent = import("./knowledgeBaseAgent").KnowledgeBaseAgent;
+export const KnowledgeBaseAgent: typeof import("./knowledgeBaseAgent").KnowledgeBaseAgent = null as any;
+utilities.lazyLoad(exports, ["KnowledgeBaseAgent"], () => require("./knowledgeBaseAgent"));
+
+export { McpGatewayGroupArgs, McpGatewayGroupState } from "./mcpGatewayGroup";
+export type McpGatewayGroup = import("./mcpGatewayGroup").McpGatewayGroup;
+export const McpGatewayGroup: typeof import("./mcpGatewayGroup").McpGatewayGroup = null as any;
+utilities.lazyLoad(exports, ["McpGatewayGroup"], () => require("./mcpGatewayGroup"));
+
+export { McpGatewayPolicyArgs, McpGatewayPolicyState } from "./mcpGatewayPolicy";
+export type McpGatewayPolicy = import("./mcpGatewayPolicy").McpGatewayPolicy;
+export const McpGatewayPolicy: typeof import("./mcpGatewayPolicy").McpGatewayPolicy = null as any;
+utilities.lazyLoad(exports, ["McpGatewayPolicy"], () => require("./mcpGatewayPolicy"));
+
+export { McpGatewayServerArgs, McpGatewayServerState } from "./mcpGatewayServer";
+export type McpGatewayServer = import("./mcpGatewayServer").McpGatewayServer;
+export const McpGatewayServer: typeof import("./mcpGatewayServer").McpGatewayServer = null as any;
+utilities.lazyLoad(exports, ["McpGatewayServer"], () => require("./mcpGatewayServer"));
+
+export { MemberArgs, MemberState } from "./member";
+export type Member = import("./member").Member;
+export const Member: typeof import("./member").Member = null as any;
+utilities.lazyLoad(exports, ["Member"], () => require("./member"));
+
+export { OutpostArgs, OutpostState } from "./outpost";
+export type Outpost = import("./outpost").Outpost;
+export const Outpost: typeof import("./outpost").Outpost = null as any;
+utilities.lazyLoad(exports, ["Outpost"], () => require("./outpost"));
+
+export { PolicyArgs, PolicyState } from "./policy";
+export type Policy = import("./policy").Policy;
+export const Policy: typeof import("./policy").Policy = null as any;
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
 
 export * from "./provider";
 import { Provider } from "./provider";
 
-export { ResourceArgs, ResourceState } from "./resource";
-export type Resource = import("./resource").Resource;
-export const Resource: typeof import("./resource").Resource = null as any;
-utilities.lazyLoad(exports, ["Resource"], () => require("./resource"));
+export { ReviewWorkflowArgs, ReviewWorkflowState } from "./reviewWorkflow";
+export type ReviewWorkflow = import("./reviewWorkflow").ReviewWorkflow;
+export const ReviewWorkflow: typeof import("./reviewWorkflow").ReviewWorkflow = null as any;
+utilities.lazyLoad(exports, ["ReviewWorkflow"], () => require("./reviewWorkflow"));
+
+export { RoleArgs, RoleState } from "./role";
+export type Role = import("./role").Role;
+export const Role: typeof import("./role").Role = null as any;
+utilities.lazyLoad(exports, ["Role"], () => require("./role"));
+
+export { ScheduleArgs, ScheduleState } from "./schedule";
+export type Schedule = import("./schedule").Schedule;
+export const Schedule: typeof import("./schedule").Schedule = null as any;
+utilities.lazyLoad(exports, ["Schedule"], () => require("./schedule"));
+
+export { SelfHostedCatalogDeploymentArgs, SelfHostedCatalogDeploymentState } from "./selfHostedCatalogDeployment";
+export type SelfHostedCatalogDeployment = import("./selfHostedCatalogDeployment").SelfHostedCatalogDeployment;
+export const SelfHostedCatalogDeployment: typeof import("./selfHostedCatalogDeployment").SelfHostedCatalogDeployment = null as any;
+utilities.lazyLoad(exports, ["SelfHostedCatalogDeployment"], () => require("./selfHostedCatalogDeployment"));
+
+export { ServiceAccountArgs, ServiceAccountState } from "./serviceAccount";
+export type ServiceAccount = import("./serviceAccount").ServiceAccount;
+export const ServiceAccount: typeof import("./serviceAccount").ServiceAccount = null as any;
+utilities.lazyLoad(exports, ["ServiceAccount"], () => require("./serviceAccount"));
+
+export { SkillArgs, SkillState } from "./skill";
+export type Skill = import("./skill").Skill;
+export const Skill: typeof import("./skill").Skill = null as any;
+utilities.lazyLoad(exports, ["Skill"], () => require("./skill"));
+
+export { TriggerArgs, TriggerState } from "./trigger";
+export type Trigger = import("./trigger").Trigger;
+export const Trigger: typeof import("./trigger").Trigger = null as any;
+utilities.lazyLoad(exports, ["Trigger"], () => require("./trigger"));
+
+export { WorkerCatalogDeploymentArgs, WorkerCatalogDeploymentState } from "./workerCatalogDeployment";
+export type WorkerCatalogDeployment = import("./workerCatalogDeployment").WorkerCatalogDeployment;
+export const WorkerCatalogDeployment: typeof import("./workerCatalogDeployment").WorkerCatalogDeployment = null as any;
+utilities.lazyLoad(exports, ["WorkerCatalogDeployment"], () => require("./workerCatalogDeployment"));
+
+export { WorkflowArgs, WorkflowState } from "./workflow";
+export type Workflow = import("./workflow").Workflow;
+export const Workflow: typeof import("./workflow").Workflow = null as any;
+utilities.lazyLoad(exports, ["Workflow"], () => require("./workflow"));
 
 
 // Export sub-modules:
 import * as config from "./config";
-import * as region from "./region";
 import * as types from "./types";
 
 export {
     config,
-    region,
     types,
 };
 
@@ -34,18 +207,105 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "xyz:index/resource:Resource":
-                return new Resource(name, <any>undefined, { urn })
+            case "agentops:index/agent:Agent":
+                return new Agent(name, <any>undefined, { urn })
+            case "agentops:index/agentSkill:AgentSkill":
+                return new AgentSkill(name, <any>undefined, { urn })
+            case "agentops:index/apiKey:ApiKey":
+                return new ApiKey(name, <any>undefined, { urn })
+            case "agentops:index/channel:Channel":
+                return new Channel(name, <any>undefined, { urn })
+            case "agentops:index/channelRoute:ChannelRoute":
+                return new ChannelRoute(name, <any>undefined, { urn })
+            case "agentops:index/credential:Credential":
+                return new Credential(name, <any>undefined, { urn })
+            case "agentops:index/credentialBinding:CredentialBinding":
+                return new CredentialBinding(name, <any>undefined, { urn })
+            case "agentops:index/graderConfig:GraderConfig":
+                return new GraderConfig(name, <any>undefined, { urn })
+            case "agentops:index/grant:Grant":
+                return new Grant(name, <any>undefined, { urn })
+            case "agentops:index/hostedAgent:HostedAgent":
+                return new HostedAgent(name, <any>undefined, { urn })
+            case "agentops:index/incidentPipeline:IncidentPipeline":
+                return new IncidentPipeline(name, <any>undefined, { urn })
+            case "agentops:index/incidentPipelineSlackTrigger:IncidentPipelineSlackTrigger":
+                return new IncidentPipelineSlackTrigger(name, <any>undefined, { urn })
+            case "agentops:index/integrationConnection:IntegrationConnection":
+                return new IntegrationConnection(name, <any>undefined, { urn })
+            case "agentops:index/knowledgeBase:KnowledgeBase":
+                return new KnowledgeBase(name, <any>undefined, { urn })
+            case "agentops:index/knowledgeBaseAgent:KnowledgeBaseAgent":
+                return new KnowledgeBaseAgent(name, <any>undefined, { urn })
+            case "agentops:index/mcpGatewayGroup:McpGatewayGroup":
+                return new McpGatewayGroup(name, <any>undefined, { urn })
+            case "agentops:index/mcpGatewayPolicy:McpGatewayPolicy":
+                return new McpGatewayPolicy(name, <any>undefined, { urn })
+            case "agentops:index/mcpGatewayServer:McpGatewayServer":
+                return new McpGatewayServer(name, <any>undefined, { urn })
+            case "agentops:index/member:Member":
+                return new Member(name, <any>undefined, { urn })
+            case "agentops:index/outpost:Outpost":
+                return new Outpost(name, <any>undefined, { urn })
+            case "agentops:index/policy:Policy":
+                return new Policy(name, <any>undefined, { urn })
+            case "agentops:index/reviewWorkflow:ReviewWorkflow":
+                return new ReviewWorkflow(name, <any>undefined, { urn })
+            case "agentops:index/role:Role":
+                return new Role(name, <any>undefined, { urn })
+            case "agentops:index/schedule:Schedule":
+                return new Schedule(name, <any>undefined, { urn })
+            case "agentops:index/selfHostedCatalogDeployment:SelfHostedCatalogDeployment":
+                return new SelfHostedCatalogDeployment(name, <any>undefined, { urn })
+            case "agentops:index/serviceAccount:ServiceAccount":
+                return new ServiceAccount(name, <any>undefined, { urn })
+            case "agentops:index/skill:Skill":
+                return new Skill(name, <any>undefined, { urn })
+            case "agentops:index/trigger:Trigger":
+                return new Trigger(name, <any>undefined, { urn })
+            case "agentops:index/workerCatalogDeployment:WorkerCatalogDeployment":
+                return new WorkerCatalogDeployment(name, <any>undefined, { urn })
+            case "agentops:index/workflow:Workflow":
+                return new Workflow(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("xyz", "index/resource", _module)
-pulumi.runtime.registerResourcePackage("xyz", {
+pulumi.runtime.registerResourceModule("agentops", "index/agent", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/agentSkill", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/apiKey", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/channel", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/channelRoute", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/credential", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/credentialBinding", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/graderConfig", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/grant", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/hostedAgent", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/incidentPipeline", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/incidentPipelineSlackTrigger", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/integrationConnection", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/knowledgeBase", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/knowledgeBaseAgent", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/mcpGatewayGroup", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/mcpGatewayPolicy", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/mcpGatewayServer", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/member", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/outpost", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/policy", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/reviewWorkflow", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/role", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/schedule", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/selfHostedCatalogDeployment", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/serviceAccount", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/skill", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/trigger", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/workerCatalogDeployment", _module)
+pulumi.runtime.registerResourceModule("agentops", "index/workflow", _module)
+pulumi.runtime.registerResourcePackage("agentops", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
-        if (type !== "pulumi:providers:xyz") {
+        if (type !== "pulumi:providers:agentops") {
             throw new Error(`unknown provider type ${type}`);
         }
         return new Provider(name, <any>undefined, { urn });
