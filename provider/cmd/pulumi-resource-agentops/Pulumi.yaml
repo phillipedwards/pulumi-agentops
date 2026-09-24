@@ -1,0 +1,3 @@
+name: agentops
+description: A Pulumi resource provider for agentops.
+language: schema

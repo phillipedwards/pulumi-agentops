@@ -12,7 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pulumi
-import pulumi_xyz
+import json
 
-resource = pulumi_xyz.Resource("Resource", sample_attribute = "attr")
+import pulumi
+import pulumi_agentops as agentops
+
+policy = agentops.Policy(
+    "deploy",
+    name="deploy-policy",
+    description="Grants agent invocation capabilities",
+    # grants is a free-form JSON array of grant definitions.
+    grants=json.dumps([{"capability": "agent.invoke", "resource_type": "agent"}]),
+)
+
+role = agentops.Role(
+    "operator",
+    name="operator",
+    description="Can invoke agents",
+    policy_ids=[policy.id],
+)
+
+pulumi.export("policyId", policy.id)
+pulumi.export("roleId", role.id)

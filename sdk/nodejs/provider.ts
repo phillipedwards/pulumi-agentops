@@ -2,20 +2,17 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as enums from "./types/enums";
 import * as utilities from "./utilities";
 
 /**
- * The provider type for the xyz package. By default, resources use package-wide configuration
+ * The provider type for the agentops package. By default, resources use package-wide configuration
  * settings, however an explicit `Provider` instance may be created and passed during resource
  * construction to achieve fine-grained programmatic control over provider settings. See the
  * [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
  */
 export class Provider extends pulumi.ProviderResource {
     /** @internal */
-    public static readonly __pulumiType = 'xyz';
+    public static readonly __pulumiType = 'agentops';
 
     /**
      * Returns true if the given object is an instance of Provider.  This is designed to work even
@@ -29,9 +26,13 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * A region which should be used.
+     * AgentOps API key used as a Bearer token. May also be set via the `AGENTOPS_API_KEY` environment variable.
      */
-    declare public readonly region: pulumi.Output<enums.region.Region | undefined>;
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
+    /**
+     * AgentOps control-plane base URL. Defaults to `https://agentops.komodor.com`. May also be set via the `AGENTOPS_ENDPOINT` environment variable. Use `https://staging.agentops.komodor.com` for staging or your own URL for self-hosted.
+     */
+    declare public readonly endpoint: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -44,9 +45,12 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["region"] = args?.region;
+            resourceInputs["apiKey"] = (args?.apiKey ? pulumi.secret(args.apiKey) : undefined) ?? utilities.getEnv("AGENTOPS_API_KEY");
+            resourceInputs["endpoint"] = (args?.endpoint) ?? utilities.getEnv("AGENTOPS_ENDPOINT");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["apiKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 
@@ -54,7 +58,7 @@ export class Provider extends pulumi.ProviderResource {
      * This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
      */
     terraformConfig(): pulumi.Output<Provider.TerraformConfigResult> {
-        return pulumi.runtime.call("pulumi:providers:xyz/terraformConfig", {
+        return pulumi.runtime.call("pulumi:providers:agentops/terraformConfig", {
             "__self__": this,
         }, this);
     }
@@ -65,9 +69,13 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * A region which should be used.
+     * AgentOps API key used as a Bearer token. May also be set via the `AGENTOPS_API_KEY` environment variable.
      */
-    region?: pulumi.Input<enums.region.Region | undefined>;
+    apiKey?: pulumi.Input<string | undefined>;
+    /**
+     * AgentOps control-plane base URL. Defaults to `https://agentops.komodor.com`. May also be set via the `AGENTOPS_ENDPOINT` environment variable. Use `https://staging.agentops.komodor.com` for staging or your own URL for self-hosted.
+     */
+    endpoint?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

@@ -1,0 +1,342 @@
+{
+    "auto-aliasing": {
+        "resources": {
+            "agentops_agent": {
+                "current": "agentops:index/agent:Agent",
+                "majorVersion": 1
+            },
+            "agentops_agent_skill": {
+                "current": "agentops:index/agentSkill:AgentSkill",
+                "majorVersion": 1
+            },
+            "agentops_api_key": {
+                "current": "agentops:index/apiKey:ApiKey",
+                "majorVersion": 1,
+                "fields": {
+                    "role_ids": {
+                        "maxItemsOne": false
+                    },
+                    "scopes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_channel": {
+                "current": "agentops:index/channel:Channel",
+                "majorVersion": 1
+            },
+            "agentops_channel_route": {
+                "current": "agentops:index/channelRoute:ChannelRoute",
+                "majorVersion": 1
+            },
+            "agentops_credential": {
+                "current": "agentops:index/credential:Credential",
+                "majorVersion": 1
+            },
+            "agentops_credential_binding": {
+                "current": "agentops:index/credentialBinding:CredentialBinding",
+                "majorVersion": 1
+            },
+            "agentops_grader_config": {
+                "current": "agentops:index/graderConfig:GraderConfig",
+                "majorVersion": 1
+            },
+            "agentops_grant": {
+                "current": "agentops:index/grant:Grant",
+                "majorVersion": 1
+            },
+            "agentops_hosted_agent": {
+                "current": "agentops:index/hostedAgent:HostedAgent",
+                "majorVersion": 1,
+                "fields": {
+                    "agents": {
+                        "maxItemsOne": false
+                    },
+                    "mcp_servers": {
+                        "maxItemsOne": false
+                    },
+                    "skills": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_incident_pipeline": {
+                "current": "agentops:index/incidentPipeline:IncidentPipeline",
+                "majorVersion": 1,
+                "fields": {
+                    "specialist_bindings": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_incident_pipeline_slack_trigger": {
+                "current": "agentops:index/incidentPipelineSlackTrigger:IncidentPipelineSlackTrigger",
+                "majorVersion": 1
+            },
+            "agentops_integration_connection": {
+                "current": "agentops:index/integrationConnection:IntegrationConnection",
+                "majorVersion": 1,
+                "fields": {
+                    "scopes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_knowledge_base": {
+                "current": "agentops:index/knowledgeBase:KnowledgeBase",
+                "majorVersion": 1
+            },
+            "agentops_knowledge_base_agent": {
+                "current": "agentops:index/knowledgeBaseAgent:KnowledgeBaseAgent",
+                "majorVersion": 1
+            },
+            "agentops_mcp_gateway_group": {
+                "current": "agentops:index/mcpGatewayGroup:McpGatewayGroup",
+                "majorVersion": 1,
+                "fields": {
+                    "allow": {
+                        "maxItemsOne": false
+                    },
+                    "deny": {
+                        "maxItemsOne": false
+                    },
+                    "member_server_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_mcp_gateway_policy": {
+                "current": "agentops:index/mcpGatewayPolicy:McpGatewayPolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "target_names": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_mcp_gateway_server": {
+                "current": "agentops:index/mcpGatewayServer:McpGatewayServer",
+                "majorVersion": 1,
+                "fields": {
+                    "allow": {
+                        "maxItemsOne": false
+                    },
+                    "deny": {
+                        "maxItemsOne": false
+                    },
+                    "oauth_scopes": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_member": {
+                "current": "agentops:index/member:Member",
+                "majorVersion": 1
+            },
+            "agentops_outpost": {
+                "current": "agentops:index/outpost:Outpost",
+                "majorVersion": 1,
+                "fields": {
+                    "allowlist": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_policy": {
+                "current": "agentops:index/policy:Policy",
+                "majorVersion": 1
+            },
+            "agentops_review_workflow": {
+                "current": "agentops:index/reviewWorkflow:ReviewWorkflow",
+                "majorVersion": 1,
+                "fields": {
+                    "manual_setup": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "events": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "repo_status": {
+                        "maxItemsOne": false
+                    },
+                    "repos": {
+                        "maxItemsOne": false
+                    },
+                    "reviewer_agent_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_role": {
+                "current": "agentops:index/role:Role",
+                "majorVersion": 1,
+                "fields": {
+                    "policy_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_schedule": {
+                "current": "agentops:index/schedule:Schedule",
+                "majorVersion": 1
+            },
+            "agentops_self_hosted_catalog_deployment": {
+                "current": "agentops:index/selfHostedCatalogDeployment:SelfHostedCatalogDeployment",
+                "majorVersion": 1
+            },
+            "agentops_service_account": {
+                "current": "agentops:index/serviceAccount:ServiceAccount",
+                "majorVersion": 1,
+                "fields": {
+                    "role_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_skill": {
+                "current": "agentops:index/skill:Skill",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_trigger": {
+                "current": "agentops:index/trigger:Trigger",
+                "majorVersion": 1
+            },
+            "agentops_worker_catalog_deployment": {
+                "current": "agentops:index/workerCatalogDeployment:WorkerCatalogDeployment",
+                "majorVersion": 1
+            },
+            "agentops_workflow": {
+                "current": "agentops:index/workflow:Workflow",
+                "majorVersion": 1
+            }
+        },
+        "datasources": {
+            "agentops_capabilities": {
+                "current": "agentops:index/getCapabilities:getCapabilities",
+                "majorVersion": 1,
+                "fields": {
+                    "capabilities": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_integration_catalog": {
+                "current": "agentops:index/getIntegrationCatalog:getIntegrationCatalog",
+                "majorVersion": 1,
+                "fields": {
+                    "entries": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "capabilities": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "agentops_outpost_install": {
+                "current": "agentops:index/getOutpostInstall:getOutpostInstall",
+                "majorVersion": 1
+            },
+            "agentops_resource_types": {
+                "current": "agentops:index/getResourceTypes:getResourceTypes",
+                "majorVersion": 1,
+                "fields": {
+                    "resource_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_reviewers": {
+                "current": "agentops:index/getReviewers:getReviewers",
+                "majorVersion": 1,
+                "fields": {
+                    "reviewers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "agentops_skills": {
+                "current": "agentops:index/getSkills:getSkills",
+                "majorVersion": 1,
+                "fields": {
+                    "skills": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "agentops_worker_catalog": {
+                "current": "agentops:index/getWorkerCatalog:getWorkerCatalog",
+                "majorVersion": 1,
+                "fields": {
+                    "entries": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "missing_credentials": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "auto-settings": {},
+    "default-resource-schema-fixups": {
+        "resources": {
+            "agentops_agent": {},
+            "agentops_agent_skill": {},
+            "agentops_api_key": {},
+            "agentops_channel": {},
+            "agentops_channel_route": {},
+            "agentops_credential": {},
+            "agentops_credential_binding": {},
+            "agentops_grader_config": {},
+            "agentops_grant": {},
+            "agentops_hosted_agent": {},
+            "agentops_incident_pipeline": {},
+            "agentops_incident_pipeline_slack_trigger": {},
+            "agentops_integration_connection": {},
+            "agentops_knowledge_base": {},
+            "agentops_knowledge_base_agent": {},
+            "agentops_mcp_gateway_group": {},
+            "agentops_mcp_gateway_policy": {},
+            "agentops_mcp_gateway_server": {},
+            "agentops_member": {},
+            "agentops_outpost": {},
+            "agentops_policy": {},
+            "agentops_review_workflow": {},
+            "agentops_role": {},
+            "agentops_schedule": {},
+            "agentops_self_hosted_catalog_deployment": {},
+            "agentops_service_account": {},
+            "agentops_skill": {},
+            "agentops_trigger": {},
+            "agentops_worker_catalog_deployment": {},
+            "agentops_workflow": {}
+        }
+    }
+}

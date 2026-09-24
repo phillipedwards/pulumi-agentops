@@ -4,5 +4,217 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
-import * as enums from "../types/enums";
 
+export interface HostedAgentAgent {
+    /**
+     * Subagent content.
+     */
+    content: pulumi.Input<string>;
+    /**
+     * Subagent identifier.
+     */
+    id: pulumi.Input<string>;
+}
+
+export interface HostedAgentImage {
+    /**
+     * Image pull policy.
+     */
+    pullPolicy?: pulumi.Input<string | undefined>;
+    /**
+     * Image registry host.
+     */
+    registry?: pulumi.Input<string | undefined>;
+    /**
+     * Image repository.
+     */
+    repository?: pulumi.Input<string | undefined>;
+    /**
+     * Image tag.
+     */
+    tag?: pulumi.Input<string | undefined>;
+}
+
+export interface HostedAgentMcpServer {
+    /**
+     * MCP server name.
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface HostedAgentSkill {
+    /**
+     * Skill content.
+     */
+    content: pulumi.Input<string>;
+    /**
+     * Skill identifier.
+     */
+    id: pulumi.Input<string>;
+}
+
+export interface IncidentPipelineAlertSource {
+    /**
+     * External monitor identifier to link when `monitorMode = linkExisting`.
+     */
+    externalMonitorId?: pulumi.Input<string | undefined>;
+    /**
+     * How the pipeline binds to the provider's monitor. One of `createCatchall`, `linkExisting`.
+     */
+    monitorMode: pulumi.Input<string>;
+    /**
+     * Alert provider. One of `datadog`, `grafana`, `alertmanager`, `pagerduty`, `opsgenie`, `generic`.
+     */
+    provider: pulumi.Input<string>;
+}
+
+export interface IncidentPipelineDeliveryConfig {
+    /**
+     * Slack delivery target.
+     */
+    slack?: pulumi.Input<inputs.IncidentPipelineDeliveryConfigSlack | undefined>;
+}
+
+export interface IncidentPipelineDeliveryConfigSlack {
+    /**
+     * Slack channel ID to post to.
+     */
+    channelId: pulumi.Input<string>;
+    /**
+     * Slack channel name. Resolved by the server when omitted.
+     */
+    channelName?: pulumi.Input<string | undefined>;
+    /**
+     * Whether Slack delivery is enabled.
+     */
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface IncidentPipelineOrchestratorBinding {
+    /**
+     * ID of the orchestrator agent.
+     */
+    agentId: pulumi.Input<string>;
+}
+
+export interface IncidentPipelineRoutingRule {
+    /**
+     * Only route incidents from this environment.
+     */
+    environment?: pulumi.Input<string | undefined>;
+    /**
+     * Whether an incident missing a filtered field is routed.
+     */
+    missingFieldDefault?: pulumi.Input<boolean | undefined>;
+    /**
+     * Route every incident, ignoring the filters below.
+     */
+    routeAll?: pulumi.Input<boolean | undefined>;
+    /**
+     * Only route incidents for this service.
+     */
+    service?: pulumi.Input<string | undefined>;
+    /**
+     * Only route incidents at this severity.
+     */
+    severity?: pulumi.Input<string | undefined>;
+    /**
+     * Only route incidents matching these tag key/value pairs.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface IncidentPipelineSpecialistBinding {
+    /**
+     * ID of the specialist agent.
+     */
+    agentId: pulumi.Input<string>;
+    /**
+     * Whether the specialist is enabled.
+     */
+    enabled: pulumi.Input<boolean>;
+    /**
+     * Role the specialist plays in the pipeline.
+     */
+    role: pulumi.Input<string>;
+}
+
+export interface OutpostAllowlist {
+    /**
+     * Hostname or IP address.
+     */
+    host: pulumi.Input<string>;
+    /**
+     * Optional path prefix.
+     */
+    pathPrefix?: pulumi.Input<string | undefined>;
+    /**
+     * Port number.
+     */
+    port: pulumi.Input<number>;
+    /**
+     * URL scheme (`http` or `https`).
+     */
+    scheme: pulumi.Input<string>;
+}
+
+export interface ReviewWorkflowManualSetup {
+    /**
+     * Webhook content type to configure.
+     */
+    contentType?: pulumi.Input<string | undefined>;
+    /**
+     * GitHub events the webhook should send.
+     */
+    events?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * GitHub repository name.
+     */
+    repoName?: pulumi.Input<string | undefined>;
+    /**
+     * GitHub repository owner.
+     */
+    repoOwner?: pulumi.Input<string | undefined>;
+    /**
+     * Webhook signing secret. Sensitive.
+     */
+    secret?: pulumi.Input<string | undefined>;
+    /**
+     * Webhook URL to register in GitHub.
+     */
+    webhookUrl?: pulumi.Input<string | undefined>;
+}
+
+export interface ReviewWorkflowRepo {
+    /**
+     * GitHub repository name.
+     */
+    repoName: pulumi.Input<string>;
+    /**
+     * GitHub repository owner (user or organization).
+     */
+    repoOwner: pulumi.Input<string>;
+}
+
+export interface ReviewWorkflowRepoStatus {
+    /**
+     * GitHub webhook ID, when provisioned.
+     */
+    githubHookId?: pulumi.Input<number | undefined>;
+    /**
+     * GitHub repository name.
+     */
+    repoName?: pulumi.Input<string | undefined>;
+    /**
+     * GitHub repository owner.
+     */
+    repoOwner?: pulumi.Input<string | undefined>;
+    /**
+     * Webhook provisioning error, when failed.
+     */
+    webhookError?: pulumi.Input<string | undefined>;
+    /**
+     * Webhook provisioning status.
+     */
+    webhookStatus?: pulumi.Input<string | undefined>;
+}

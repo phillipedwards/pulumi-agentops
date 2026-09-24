@@ -7,22 +7,28 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Xyz
+namespace Pulumi.Agentops
 {
     /// <summary>
-    /// The provider type for the xyz package. By default, resources use package-wide configuration
+    /// The provider type for the agentops package. By default, resources use package-wide configuration
     /// settings, however an explicit `Provider` instance may be created and passed during resource
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
-    [XyzResourceType("pulumi:providers:xyz")]
+    [AgentopsResourceType("pulumi:providers:agentops")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// A region which should be used.
+        /// AgentOps API key used as a Bearer token. May also be set via the `AGENTOPS_API_KEY` environment variable.
         /// </summary>
-        [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        [Output("apiKey")]
+        public Output<string?> ApiKey { get; private set; } = null!;
+
+        /// <summary>
+        /// AgentOps control-plane base URL. Defaults to `https://agentops.komodor.com`. May also be set via the `AGENTOPS_ENDPOINT` environment variable. Use `https://staging.agentops.komodor.com` for staging or your own URL for self-hosted.
+        /// </summary>
+        [Output("endpoint")]
+        public Output<string?> Endpoint { get; private set; } = null!;
 
 
         /// <summary>
@@ -33,7 +39,7 @@ namespace Pulumi.Xyz
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
-            : base("xyz", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
+            : base("agentops", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -42,6 +48,10 @@ namespace Pulumi.Xyz
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "apiKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -53,19 +63,37 @@ namespace Pulumi.Xyz
         /// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
         /// </summary>
         public global::Pulumi.Output<ProviderTerraformConfigResult> TerraformConfig()
-            => global::Pulumi.Deployment.Instance.Call<ProviderTerraformConfigResult>("pulumi:providers:xyz/terraformConfig", CallArgs.Empty, this);
+            => global::Pulumi.Deployment.Instance.Call<ProviderTerraformConfigResult>("pulumi:providers:agentops/terraformConfig", CallArgs.Empty, this);
     }
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
+
         /// <summary>
-        /// A region which should be used.
+        /// AgentOps API key used as a Bearer token. May also be set via the `AGENTOPS_API_KEY` environment variable.
         /// </summary>
-        [Input("region", json: true)]
-        public Input<Pulumi.Xyz.Region.Region>? Region { get; set; }
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// AgentOps control-plane base URL. Defaults to `https://agentops.komodor.com`. May also be set via the `AGENTOPS_ENDPOINT` environment variable. Use `https://staging.agentops.komodor.com` for staging or your own URL for self-hosted.
+        /// </summary>
+        [Input("endpoint")]
+        public Input<string>? Endpoint { get; set; }
 
         public ProviderArgs()
         {
+            ApiKey = Utilities.GetEnv("AGENTOPS_API_KEY");
+            Endpoint = Utilities.GetEnv("AGENTOPS_ENDPOINT");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }
